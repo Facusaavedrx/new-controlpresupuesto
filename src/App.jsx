@@ -1,7 +1,11 @@
+import Header from './components/Header'
+import NuevoPresupuesto from './components/NuevoPresupuesto'
+
 function App () {
   return (
     <div className='App'>
-      <h1>Hello World from App.jsx</h1>
+      <Header />
+      <NuevoPresupuesto />
     </div>
   )
 }
