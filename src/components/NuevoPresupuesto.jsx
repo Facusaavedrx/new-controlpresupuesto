@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Mensaje from './Mensaje.jsx'
 
-function NuevoPresupuesto ({ presupuesto, setPresupuesto }) {
+function NuevoPresupuesto ({ presupuesto, setPresupuesto, setIsValidPresupuesto }) {
   const [mensaje, setMensaje] = useState('')
 
   // Validacion del formulario
@@ -9,9 +9,10 @@ function NuevoPresupuesto ({ presupuesto, setPresupuesto }) {
     e.preventDefault()
     if (!Number(presupuesto) || presupuesto <= 0) {
       setMensaje('No es un presupuesto valido')
-    } else {
-      console.log('Es un presupuesto valido')
+      return
     }
+    setMensaje('')
+    setIsValidPresupuesto(true)
   }
 
   return (
@@ -25,7 +26,7 @@ function NuevoPresupuesto ({ presupuesto, setPresupuesto }) {
             className='nuevo-presupuesto'
             placeholder='Añade tu presupuesto'
             value={presupuesto}
-            onChange={e => setPresupuesto(e.target.value)}
+            onChange={e => setPresupuesto(Number(e.target.value))}
           />
         </div>
 
