@@ -25,7 +25,6 @@ function NuevoPresupuesto ({ presupuesto, setPresupuesto, setIsValidPresupuesto 
             type='number'
             className='nuevo-presupuesto'
             placeholder='Añade tu presupuesto'
-            value={presupuesto}
             onChange={e => setPresupuesto(Number(e.target.value))}
           />
         </div>
