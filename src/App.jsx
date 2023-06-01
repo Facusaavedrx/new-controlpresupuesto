@@ -11,7 +11,6 @@ function App () {
 
   const handleNuevoGasto = () => {
     setModal(true)
-
     setTimeout(() => {
       setAnimarModal(true)
     }, 250)
