@@ -25,12 +25,12 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones
 }
 
-function Gasto ({ gasto }) {
+function Gasto ({ gasto, setGastoEditar }) {
   const { nombre, cantidad, categoria, id, fecha } = gasto
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log('Editar')}>
+      <SwipeAction onClick={() => setGastoEditar(gasto)}>
         Editar
       </SwipeAction>
     </LeadingActions>
