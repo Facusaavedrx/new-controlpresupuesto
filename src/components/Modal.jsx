@@ -20,11 +20,11 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto }) {
     e.preventDefault()
     if ([nombre, cantidad, categoria].includes('')) {
       setMensaje('Todos los campos son obligatorios')
-      return;
+      return
     }
     if (!Number(cantidad)) {
       setMensaje('Por favor ingrese un numero valido')
-      return;
+      return
     }
 
     guardarGasto({ nombre, cantidad, categoria })
