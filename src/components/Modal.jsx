@@ -23,7 +23,7 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto }) {
       return;
     }
     if (!Number(cantidad)) {
-      setMensaje('Cantidad no valida, por favor ingrese un numero')
+      setMensaje('Por favor ingrese un numero valido')
       return;
     }
 
