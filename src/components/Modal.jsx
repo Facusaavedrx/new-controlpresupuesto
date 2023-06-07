@@ -1,16 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CerrarBtn from '../img/cerrar.svg'
 import Mensaje from './Mensaje'
 
-function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto }) {
+function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar, setGastoEditar }) {
   const [mensaje, setMensaje] = useState('')
   const [nombre, setNombre] = useState('')
   const [cantidad, setCantidad] = useState(0)
   const [categoria, setCategoria] = useState('')
 
+  useEffect(() => {
+    if (Object.keys(gastoEditar).length > 0) {
+      setNombre(gastoEditar.nombre)
+      setCantidad(gastoEditar.cantidad)
+      setCategoria(gastoEditar.categoria)
+    }
+  }, [])
   const ocultarModal = () => {
     setAnimarModal(false)
-
+    setGastoEditar({})
     setTimeout(() => {
       setModal(false)
     }, 250)
@@ -68,12 +75,13 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto }) {
               name='cantidad'
               placeholder='Ejemplo: 150, 300, 550.'
               onChange={(e) => setCantidad(Number(e.target.value))}
+              value={cantidad}
             />
           </div>
 
           <div className='campo'>
             <label htmlFor='categoria'>Categoria:</label>
-            <select name='categoria' id='categoria' onChange={(e) => setCategoria(e.target.value)}>
+            <select value={categoria} name='categoria' id='categoria' onChange={(e) => setCategoria(e.target.value)}>
               <option value=''>Seleccionar</option>
               <option value='ahorro'>Ahorro</option>
               <option value='comida'>Comida</option>
