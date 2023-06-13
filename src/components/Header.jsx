@@ -1,7 +1,7 @@
 import NuevoPresupuesto from './NuevoPresupuesto.jsx'
 import ControlPresupuesto from './ControlPresupuesto.jsx'
 
-function Header ({ presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto, gastos }) {
+function Header ({ presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto, gastos, setGastos }) {
   return (
     <header>
       <h1>Planificador de gastos</h1>
@@ -9,7 +9,10 @@ function Header ({ presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPr
         ? (
           <ControlPresupuesto
             gastos={gastos}
+            setGastos={setGastos}
             presupuesto={presupuesto}
+            setPresupuesto={setPresupuesto}
+            setIsValidPresupuesto={setIsValidPresupuesto}
           />
           )
         : (
