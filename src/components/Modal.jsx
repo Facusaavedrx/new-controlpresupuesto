@@ -7,19 +7,23 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit
   const [nombre, setNombre] = useState('')
   const [cantidad, setCantidad] = useState(0)
   const [categoria, setCategoria] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [id, setId] = useState('')
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
       setNombre(gastoEditar.nombre)
       setCantidad(gastoEditar.cantidad)
       setCategoria(gastoEditar.categoria)
+      setId(gastoEditar.id)
+      setFecha(gastoEditar.fecha)
     }
   }, [])
   const ocultarModal = () => {
     setAnimarModal(false)
-    setGastoEditar({})
     setTimeout(() => {
       setModal(false)
+      setGastoEditar({})
     }, 250)
   }
 
@@ -29,12 +33,12 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit
       setMensaje('Todos los campos son obligatorios')
       return
     }
-    if (!Number(cantidad)) {
+    if (!Number(cantidad) || Number(cantidad) < 0) {
       setMensaje('Por favor ingrese un numero valido')
       return
     }
 
-    guardarGasto({ nombre, cantidad, categoria })
+    guardarGasto({ nombre, cantidad, categoria, id, fecha })
   }
 
   return (
@@ -52,7 +56,7 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit
         onSubmit={handleSubmit}
       >
         <fieldset>
-          <legend>Nuevo gasto</legend>
+          <legend>{gastoEditar.nombre ? 'Editar gasto' : 'Nuevo gasto'}</legend>
           {mensaje && <Mensaje tipo='error'> {mensaje} </Mensaje>}
 
           <div className='campo'>
@@ -93,7 +97,7 @@ function Modal ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEdit
             </select>
           </div>
 
-          <input type='submit' value='Añadir gasto' />
+          <input type='submit' value={gastoEditar.nombre ? 'Editar' : 'Añadir'} />
         </fieldset>
       </form>
     </div>
