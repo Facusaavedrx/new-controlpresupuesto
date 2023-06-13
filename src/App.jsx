@@ -34,6 +34,7 @@ function App () {
     if (gasto.id) {
       const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto : gastoState)
       setGastos(gastosActualizados)
+      setGastoEditar({})
     } else {
       gasto.id = uuidv4()
       gasto.fecha = Date.now()
